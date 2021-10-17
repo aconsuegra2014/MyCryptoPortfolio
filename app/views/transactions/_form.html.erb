@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :crypto_quantity %>
-    <%= form.text_field :crypto_quantity %>
+    <%= form.number_field :crypto_quantity, step: :any %>
   </div>
 
   <div class="field">
     <%= form.label :fiat_quantity %>
-    <%= form.text_field :fiat_quantity %>
+    <%= form.number_field :fiat_quantity, step: 0.01 %>
   </div>
 
   <div class="field">
@@ -29,6 +29,11 @@
   <div class="field">
     <%= form.label :crypto_currency_id %>
     <%= form.select :crypto_currency_id, @crypto_currencies, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.rich_text_area :note %>
   </div>
 
   <div class="actions">
