@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @crypto_currency.name %>
+</p>
+
+<p>
+  <strong>Ticker symbol:</strong>
+  <%= @crypto_currency.ticker_symbol %>
+</p>
+
+<%= link_to 'Edit', edit_crypto_currency_path(@crypto_currency) %> |
+<%= link_to 'Back', crypto_currencies_path %>

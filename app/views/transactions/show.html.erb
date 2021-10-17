@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Crypto quantity:</strong>
+  <%= @transaction.crypto_quantity %>
+</p>
+
+<p>
+  <strong>Fiat quantity:</strong>
+  <%= @transaction.fiat_quantity %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transaction.date %>
+</p>
+
+<p>
+  <strong>Crypto currency:</strong>
+  <%= @transaction.crypto_currency_id %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>

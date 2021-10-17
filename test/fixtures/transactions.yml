@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  crypto_quantity: 9.99
+  fiat_quantity: 9.99
+  date: 2021-10-16
+  crypto_currency: one
+
+two:
+  crypto_quantity: 9.99
+  fiat_quantity: 9.99
+  date: 2021-10-16
+  crypto_currency: two

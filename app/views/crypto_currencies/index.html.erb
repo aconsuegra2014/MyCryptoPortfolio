@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Crypto Currencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker symbol</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @crypto_currencies.each do |crypto_currency| %>
+      <tr>
+        <td><%= crypto_currency.name %></td>
+        <td><%= crypto_currency.ticker_symbol %></td>
+        <td><%= link_to 'Show', crypto_currency %></td>
+        <td><%= link_to 'Edit', edit_crypto_currency_path(crypto_currency) %></td>
+        <td><%= link_to 'Destroy', crypto_currency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Crypto Currency', new_crypto_currency_path %>

@@ -1,0 +1,10 @@
+class CreateCryptoCurrencies < ActiveRecord::Migration[6.1]
+  def change
+    create_table :crypto_currencies do |t|
+      t.string :name
+      t.string :ticker_symbol
+
+      t.timestamps
+    end
+  end
+end
