@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :crypto_currency_id %>
-    <%= form.text_field :crypto_currency_id %>
+    <%= form.select :crypto_currency_id, @crypto_currencies, include_blank: true %>
   </div>
 
   <div class="actions">

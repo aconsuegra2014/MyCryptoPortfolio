@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ show edit update destroy ]
+  before_action :set_crypto_currencies, only: %i[ new create edit ]
 
   # GET /transactions or /transactions.json
   def index
@@ -62,6 +63,9 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.find(params[:id])
     end
 
+    def set_crypto_currencies
+      @crypto_currencies = CryptoCurrency.pluck(:name, :id)
+    end
     # Only allow a list of trusted parameters through.
     def transaction_params
       params.require(:transaction).permit(:crypto_quantity, :fiat_quantity, :date, :crypto_currency_id)
