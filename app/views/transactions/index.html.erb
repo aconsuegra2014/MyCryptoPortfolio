@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<% @crypto_currencies.each do |crypto_currency| %>
+<div>
+  <div>
+    Amount in <%= crypto_currency.ticker_symbol %> <%= Dashboard.amount_by_crypto crypto_currency.id %>
+  </div>
+</div>
+<% end %>
+
 <h1>Transactions</h1>
 
 <table>
