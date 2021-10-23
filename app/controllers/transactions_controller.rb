@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.joins(:crypto_currency)
+    @pagy, @transactions = pagy (Transaction.joins(:crypto_currency) )
     @crypto_currencies = CryptoCurrency.joins(:transactions).group(:crypto_currency_id)
   end
 
