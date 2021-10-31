@@ -14,3 +14,36 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+var supportedCoins = {
+    'BCH': 'bitcoin-cash',
+    'ADA': 'cardano'
+}
+
+let url = new URL('https://api.coingecko.com/api/v3/simple/price');
+url.search = new URLSearchParams({
+    ids: 'cardano,bitcoin-cash',
+    vs_currencies: 'usd'
+});
+
+fetch(url)
+  .then( response => {
+      if(response.ok)
+      return  response.json();
+  })
+  .then( jsonObject => {
+      document.querySelectorAll("#crypto-resume span.fiat-value").forEach( item => {
+          let parent = item.parentNode;
+
+          let fiatValue = item.dataset.amount * jsonObject[supportedCoins[item.id]].usd;
+
+          let fiatSpent = parent.dataset.fiatSpent;
+
+          item.innerText = fiatValue.toFixed(2);
+
+          let profitLost = fiatValue - fiatSpent;
+          parent.querySelector("span.profit-lost").innerText =  profitLost.toFixed(2);
+          
+      })
+  })
+  

@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<div id="crypto-resume">
 <% @crypto_currencies.each do |crypto_currency| %>
-<div>
-  <div>
-    Amount in <%= crypto_currency.ticker_symbol %> <%= Dashboard.amount_by_crypto crypto_currency.id %>
+  <div data-fiat-spent="<%= Dashboard.spent_per_crypto crypto_currency.id %>">
+    You have <%= Dashboard.amount_by_crypto crypto_currency.id %> <%= crypto_currency.ticker_symbol %><br>
+    Currently represent <span class="fiat-value" id="<%= crypto_currency.ticker_symbol %>" data-amount="<%= Dashboard.amount_by_crypto crypto_currency.id %>">0</span> USD
+    for a profit/lose of <span class="profit-lost">0</span> USD
   </div>
-</div>
 <% end %>
+</div>
 
 <%== pagy_nav(@pagy) %>
 
