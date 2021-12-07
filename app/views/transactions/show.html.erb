@@ -17,7 +17,12 @@
 
 <p>
   <strong>Crypto currency:</strong>
-  <%= @transaction.crypto_currency_id %>
+  <%= @transaction.crypto_currency.name %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @transaction.note %>
 </p>
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
