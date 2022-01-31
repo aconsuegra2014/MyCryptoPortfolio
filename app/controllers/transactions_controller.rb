@@ -69,6 +69,6 @@ class TransactionsController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:crypto_quantity, :fiat_quantity, :date, :crypto_currency_id, :note)
+      params.require(:transaction).permit(:crypto_quantity, :fiat_quantity, :date, :crypto_currency_id, :note, :tag_list)
     end
 end

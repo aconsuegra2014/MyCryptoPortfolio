@@ -8,6 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { ready } from "./utils.mjs";
+import Choices from "choices.js";
+
+
 
 Rails.start()
 Turbolinks.start()
@@ -16,13 +19,18 @@ ActiveStorage.start()
 require("trix")
 require("@rails/actiontext")
 
+
 var supportedCoins = {
     'BCH': 'bitcoin-cash',
     'ADA': 'cardano'
 }
 
 ready(event => {
-
+    const choices = new Choices('#transaction_tag_list',
+    {
+        removeItemButton: true
+      });
+      
     let url = new URL('https://api.coingecko.com/api/v3/simple/price');
     url.search = new URLSearchParams({
         ids: 'cardano,bitcoin-cash',
