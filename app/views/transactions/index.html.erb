@@ -1,16 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <div id="crypto-resume">
-<% @crypto_currencies.each do |crypto_currency| %>
-  <div data-fiat-spent="<%= Dashboard.spent_per_crypto crypto_currency.id %>">
-    You have <%= Dashboard.amount_by_crypto crypto_currency.id %> <%= crypto_currency.ticker_symbol %><br>
-    Currently represent <span class="fiat-value" id="<%= crypto_currency.ticker_symbol %>" data-amount="<%= Dashboard.amount_by_crypto crypto_currency.id %>">0</span> USD
+  <% @crypto_currencies.each do |crypto_currency| %>
+  <div data-fiat-spent="<%= Dashboard.spent_per_crypto crypto_currency.id, @filtered %>">
+    You have <%= Dashboard.amount_by_crypto crypto_currency.id, @filtered %> <%= crypto_currency.ticker_symbol %><br>
+    Currently represent <span class="fiat-value" id="<%= crypto_currency.ticker_symbol %>" data-amount="<%= Dashboard.amount_by_crypto crypto_currency.id, @filtered %>">0</span> USD
     for a profit/lose of <span class="profit-lost">0</span> USD
   </div>
-<% end %>
+  <% end %>
 </div>
 
 <%== pagy_nav(@pagy) %>
+
+<ol>
+  <li>
+    <%= select_tag :tag, options_for_select(@filter[:tag]) %>
+  </li>
+  <li>
+    <button type="button" id="filter">Filter</button>
+  </li>
+  
+</ol>
 
 <h1>Transactions</h1>
 
@@ -27,15 +37,15 @@
 
   <tbody>
     <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.crypto_quantity %></td>
-        <td><%= transaction.fiat_quantity %></td>
-        <td><%= transaction.date %></td>
-        <td><%= transaction.crypto_currency_id %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= transaction.crypto_quantity %></td>
+      <td><%= transaction.fiat_quantity %></td>
+      <td><%= transaction.date %></td>
+      <td><%= transaction.crypto_currency_id %></td>
+      <td><%= link_to 'Show', transaction %></td>
+      <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+      <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>

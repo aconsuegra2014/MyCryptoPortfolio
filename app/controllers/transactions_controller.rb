@@ -4,7 +4,14 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @pagy, @transactions = pagy (Transaction.joins(:crypto_currency) )
+    @filter = {}
+    @filter[:tag] = ActsAsTaggableOn::Tag.pluck(:name)
+    @filtered = params[:filter]
+    unless params[:filter].nil?
+    @pagy, @transactions = pagy (Transaction.joins(:crypto_currency).tagged_with params[:filter] )
+    else
+      @pagy, @transactions = pagy (Transaction.joins(:crypto_currency) )
+    end
     @crypto_currencies = CryptoCurrency.joins(:transactions).group(:crypto_currency_id)
   end
 

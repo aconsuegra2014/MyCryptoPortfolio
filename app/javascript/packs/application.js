@@ -26,10 +26,9 @@ var supportedCoins = {
 }
 
 ready(event => {
-    const choices = new Choices('#transaction_tag_list',
-    {
-        removeItemButton: true
-      });
+    let transactionTags = document.querySelector("#transaction_tag_list")
+        
+    const choices =  transactionTags ? new Choices(transactionTags, { removeItemButton: true }) : null;
       
     let url = new URL('https://api.coingecko.com/api/v3/simple/price');
     url.search = new URLSearchParams({
